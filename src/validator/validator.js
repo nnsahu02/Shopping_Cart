@@ -7,75 +7,77 @@ const isValidEmail = function (value) {
     /^[a-z0-9_]{2,}@[a-z]{3,}.[com]{3}$/
   if (emailRegex.test(value)) return true;
 };
-
-//============================// idCharacterValid //============================
+//=========================// idCharacterValid //===============================
 
 const isIdValid = function (value) {
   return mongoose.Types.ObjectId.isValid(value);
 };
-
-//==========================// isValidString //==================================
+//=========================// isValidString //==================================
 
 const isValidString = function (value) {
   if (typeof value === "undefined" || value === 'null') return false;
   if (typeof value === "string" && value.trim().length === 0) return false;
   return true;
 };
+//=========================// isValidNumber //===================================
 
 const isValidNumber = function (value) {
   if (typeof value === "undefined" || value === 'null') return false;
   if (typeof value === "Number" && value.trim().length === 0) return false;
   return true;
 };
-
-//==============================// isValidName //===============================
+//=========================// isValidName //=====================================
 
 const isValidName = function (name) {
   if (/^[a-zA-Z ]+$/.test(name)) {
     return true;
   }
 };
+//=========================// isValidProductName //==============================
 
 const isValidProductName = function (name) {
   if (/^[a-zA-Z0-9 ]+$/.test(name)) {
     return true;
   }
 };
-
-//==============================// isValidMobile //===============================
+//=========================// isValidMobile //===================================
 
 const isValidMobile = function (mobile) {
   if (/^[0]?[6789]\d{9}$/.test(mobile)) {
     return true
   }
 }
+//=========================// isValidAddress //===================================
 
 const isValidadd = function (value) {
   return (/^[a-zA-Z0-9_ ,.-]{2,50}$/).test(value)
 }
+//=========================// isValidPin //=======================================
 
 const isValidPin = function (pin) {
   return /^\+?([1-9]{1})\)?([0-9]{5})$/.test(pin);
 }
+//=========================// isValidPassword //==================================
 
-//==============================// isValidPassword //==============================
- 
 const isValidPassword = function (pw) {
   let pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,15}$/;
   if (pass.test(pw)) return true;
 };
+//=========================// isValidDecimalNumber //=============================
 
 const isValidDecimalNumber = function (decimal) {
   return /^(\d+\.?\d*)$/.test(decimal);
 }
+//=========================// isValidSize //======================================
 
 const isValidSize = function (value) {
   return ["S", "XS", "M", "X", "L", "XXL", "XL"].includes(value)
 }
+//=========================// isValidPrice //=====================================
 
 const isValidPrice = function (price) {
   return /^[1-9]\d{0,20}(?:\.\d{1,2})?$/.test(price)
 }
-//=============================// module exports //================================
+//=========================// module exports //====================================
 
 module.exports = { isValidPassword, isValidEmail, isIdValid, isValidDecimalNumber, isValidString, isValidNumber, isValidName, isValidadd, isValidPin, isValidProductName, isValidMobile, isValidSize, isValidPrice }

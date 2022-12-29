@@ -5,7 +5,7 @@ const { uploadFile } = require('./awsController')
 
 const { isValidPassword, isValidEmail, isIdValid, isValidString, isValidNumber, isValidadd, isValidPin, isValidName, isValidMobile } = require("../validator/validator")
 
-//REGISTER USER
+//--------------------------------------------><< REGISTER USER >><-----------------------------------------//
 const registerUser = async (req, res) => {
     try {
         const bodyData = req.body
@@ -46,8 +46,6 @@ const registerUser = async (req, res) => {
 
         if (!password) return res.status(400).send({ status: false, message: 'password is required' })
         if (!isValidPassword(password)) return res.status(400).send({ status: false, message: "Password must contain 1 Uppercase and Lowecase letter with at least 1 special charachter , password length should be 8-15 charachter. ex - Rahul@123" })
-
-
 
         // ---------> Address <---------
         try {
@@ -94,7 +92,6 @@ const registerUser = async (req, res) => {
                 return res.status(400).send({ status: false, message: "Please provide valid Pincode of 6 digits" })
 
             bodyData.address = adressObj
-
         }
         catch (error) {
             return res.status(400).send({ status: false, message: "Address is in invalid format." })
@@ -111,7 +108,7 @@ const registerUser = async (req, res) => {
 }
 
 
-//LOGIN USER
+//--------------------------------------------><< LOGIN USER >><------------------------------------------//
 const login = async (req, res) => {
     try {
         const { email, password } = req.body
@@ -144,7 +141,7 @@ const login = async (req, res) => {
 }
 
 
-//GET USER PROFILE
+//-----------------------------------------><< GET USER PROFILE >><---------------------------------------//
 const getUserProfile = async (req, res) => {
     try {
         const userId = req.params.userId
@@ -165,17 +162,18 @@ const getUserProfile = async (req, res) => {
 }
 
 
-//UPDATE USER PROFILE
+//----------------------------------------><< UPDATE USER PROFILE >><-------------------------------------//
 const updateUser = async (req, res) => {
-    try { 
+    try {
         const userId = req.params.userId
 
         const bodyData = req.body
         const profileImage = req.files
+
         if (profileImage && profileImage.length > 0) {
             let uploadProfileImage = await uploadFile(profileImage[0]);
             bodyData.profileImage = uploadProfileImage;
-        } 
+        }
 
         if (typeof (bodyData) == "undefined" || Object.keys(bodyData).length == 0) return res.status(400).send({ status: false, message: "Please provide some data in body to update." })
 
@@ -204,7 +202,6 @@ const updateUser = async (req, res) => {
             }
         }
 
-
         if (phone) {
             if (!isValidMobile(phone)) {
                 return res.status(400).send({ status: false, message: "Please provide valid phone number." })
@@ -226,7 +223,6 @@ const updateUser = async (req, res) => {
         if (bodyData.address == "") {
             return res.status(400).send({ status: false, message: 'address can not be empty' })
         }
-
 
         if (bodyData.address) {
             try {
@@ -268,8 +264,6 @@ const updateUser = async (req, res) => {
                 return res.status(400).send({ status: false, message: "Address is in Invalid format. The correct format is {'shipping' : {'street' : 'rknagar', 'city' : 'bbsr', 'pincode' : 765013}, 'billing' : {'street' : 'rknagar', 'city' : 'bbsr', 'pincode' : 765013}" })
             }
         }
-
-
 
         let updateData = await userModel.findByIdAndUpdate(
             { _id: userId },

@@ -1,11 +1,10 @@
 const productModel = require("../model/productModel")
 const cartModel = require("../model/cartModel")
 const userModel = require("../model/userModel")
-const { isIdValid } = require("../validator/validator") 
+const { isIdValid } = require("../validator/validator")
 
 
 //----------------------------------------><< CREATECART >><--------------------------------------------//
-
 const createCart = async function (req, res) {
     try {
         const userId = req.params.userId
@@ -132,9 +131,7 @@ const createCart = async function (req, res) {
 }
 
 
-
 //-----------------------------------------><< UPDATE CART >><-------------------------------------------//
-
 const updateCart = async (req, res) => {
     try {
         const userId = req.params.userId
@@ -257,8 +254,8 @@ const updateCart = async (req, res) => {
     }
 }
 
-//--------------------------------------------><< GET CART >><-------------------------------------------//
 
+//--------------------------------------------><< GET CART >><-------------------------------------------//
 const getCart = async function (req, res) {
     try {
         let userId = req.params.userId
@@ -293,8 +290,8 @@ const getCart = async function (req, res) {
     }
 }
 
-//------------------------------------------><< DELETE CART >><------------------------------------------//
 
+//------------------------------------------><< DELETE CART >><------------------------------------------//
 const deleteCart = async function (req, res) {
     try {
         let userId = req.params.userId

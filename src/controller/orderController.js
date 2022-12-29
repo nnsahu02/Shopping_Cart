@@ -2,7 +2,7 @@ const orderModel = require("../model/orderModel")
 const cartModel = require("../model/cartModel")
 const { isIdValid } = require("../validator/validator")
 
-//CREARTE ORDER
+//-------------------------------------------><< CREARTE ORDER >><----------------------------------------//
 const createOrder = async function (req, res) {
     try {
         let userId = req.params.userId
@@ -69,7 +69,7 @@ const createOrder = async function (req, res) {
     }
 }
 
-//UPDATE ORDER
+//-------------------------------------------><< UPDATE ORDER >><-----------------------------------------//
 const updateOrder = async function (req, res) { 
     try {
         const userId = req.params.userId
